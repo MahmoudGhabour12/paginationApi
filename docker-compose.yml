@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+     # Our express app.
+    app:
+      build: .
+      ports:
+          - '3000:3000'
+       
+    # We tell docker that to not start web container until db container is started.
+    # It just wait until the db container is started not until it is started and ready.
+      depends_on:
+       - 'easyKash'
+    easyKash:
+      container_name: easyKash
+      image: mysql
+      command: --default-authentication-plugin=mysql_native_password
+      restart: always
+      ports:
+        - 3389:3306
+      environment:
+        MYSQL_ROOT_PASSWORD: 1
+        MYSQL_DATABASE: easyKash
+        MYSQL_USER: root
+        MYSQL_PASSWORD: 1
