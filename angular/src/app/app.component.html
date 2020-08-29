@@ -1,0 +1,32 @@
+<div class="card">
+  <h2>Seller Transactions</h2>
+  <p-table [value]="transactions" [totalRecords]="paging?.total" [rows]="per_page" [loading]="loading"
+    [showCurrentPageReport]="true" [lazy]="true" (onLazyLoad)="nextPage($event)" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>title</th>
+        <th>fees</th>
+        <th>amount</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transactions>
+      <tr>
+        <td>{{transactions.id}}</td>
+        <td>{{transactions.title}}</td>
+        <td>{{transactions.fees}}</td>
+        <td>{{transactions.amount}}</td>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+      <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+  </p-table>
+</div>
+
+<router-outlet></router-outlet>
